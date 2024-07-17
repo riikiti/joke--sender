@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jokes', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->string('body',1024);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

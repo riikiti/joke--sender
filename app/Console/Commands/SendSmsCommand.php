@@ -28,7 +28,7 @@ class SendSmsCommand extends Command
      */
     public function handle(): int
     {
-        $jokes = Joke::whereDate('publish_at', Carbon::today())->where('publish_at', '<=', now())->get();
+        $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->get();
         foreach ($jokes as $joke) {
             SmsJokeSenderJob::dispatch($joke);
         }
