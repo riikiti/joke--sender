@@ -1,3 +1,3 @@
-### Service for send sms
-## Using service
+## Service for send sms
+### Using service
 - mainsms -> https://mainsms.ru
