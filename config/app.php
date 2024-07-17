@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -122,5 +122,9 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    'mainSmsKey' => env('MAINSMS_KEY', 'ac18aa7e2d8df2122e337469b590a81e'),
+    'mainSmsProject' => env('MAINSMS_PROJECT', 'zems'),
+    'mainSmsURL' => env('MAINSMS_URL', 'https://mainsms.ru/api/message/send'),
+    'mainSmsTestMode' => env('MAINSMS_TEST_MODE', true),
 
 ];
