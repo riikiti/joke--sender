@@ -13,6 +13,7 @@
         "filament/widgets": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "mohamedsabil83/filament-forms-tinyeditor": "^2.3",
         "nutgram/laravel": "^1.4",
         "nutgram/nutgram": "^4.24"
     },

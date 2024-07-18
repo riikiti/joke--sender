@@ -18,6 +18,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class JokeResource extends Resource
 {
@@ -31,7 +32,7 @@ class JokeResource extends Resource
             ->schema([
                 Grid::make(1)
                     ->schema([
-                        TextInput::make('body')->label('Шутка')->required()->maxValue(1024),
+                        TinyEditor::make('body')->label('Шутка')->required()->maxLength(1024),
                         DateTimePicker::make('published_at')->label('Дата публикации'),
                         Toggle::make('sms')->label('SMS'),
                         Toggle::make('tg')->label('Telegram')
