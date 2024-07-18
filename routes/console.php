@@ -8,5 +8,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('app:send-sms-command')->everyFiveMinutes();
-Schedule::command('app:send-telegram-command')->everyFiveMinutes();
+Schedule::command('app:send-sms-command')->everyMinute();
+Schedule::command('app:send-telegram-command')->everyMinute();
