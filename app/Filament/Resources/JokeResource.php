@@ -8,6 +8,7 @@ use App\Models\Joke;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -33,7 +34,7 @@ class JokeResource extends Resource
             ->schema([
                 Grid::make(1)
                     ->schema([
-                        TinyEditor::make('body')->label('Шутка')->required()->maxLength(1024),
+                        Textarea::make('body')->label('Шутка')->required()->maxLength(4096),
                         DateTimePicker::make('published_at')->label('Дата публикации'),
                         Toggle::make('sms')->label('SMS'),
                         Toggle::make('tg')->label('Telegram')
