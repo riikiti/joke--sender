@@ -29,10 +29,11 @@ class SendTelegramCommand extends Command
      */
     public function handle(SendTelegramAction $action)
     {
-        $jokes = Joke::whereDate('published_at', Carbon::today())->where('completed',false)->where('tg',true)->get();
-        foreach ($jokes as $joke) {
-            $action->send($joke);
-        }
+        $joke = Joke::whereDate('published_at', Carbon::today())->where('completed', false)->where('tg', true)->first(
+        );
+
+        $action->send($joke);
+
         return self::SUCCESS;
     }
 }

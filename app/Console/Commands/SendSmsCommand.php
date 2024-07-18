@@ -29,10 +29,11 @@ class SendSmsCommand extends Command
      */
     public function handle(SendSmsAction $action): int
     {
-        $jokes = Joke::whereDate('published_at', Carbon::today())->where('sms',true)->where('completed',false)->get();
-        foreach ($jokes as $joke) {
-            $action ->send($joke);
-        }
+        $joke = Joke::whereDate('published_at', Carbon::today())->where('sms', true)->where('completed', false)->first(
+        );
+
+        $action->send($joke);
+
         return self::SUCCESS;
     }
 }
