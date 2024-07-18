@@ -5,6 +5,7 @@ namespace App\Actions\SMS;
 use App\Actions\SendInterface;
 use App\Models\Joke;
 use App\Models\User;
+use App\Trait\ClearPhoneTrait;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Log;
 
 class SendSmsAction implements SendInterface
 {
+    use ClearPhoneTrait;
+
     public Client $client;
     public string $key;
     public string $project;
@@ -41,7 +44,7 @@ class SendSmsAction implements SendInterface
                     ],
                     'form_params' => [
                         'project' => $this->project,
-                        'recipients' => $user->phone,
+                        'recipients' => $this->clearPhone($user->phone),
                         'message' => $joke->body,
                         'apikey' => $this->key,
                         'test' => config('app.mainSmsTestMode')
@@ -49,7 +52,7 @@ class SendSmsAction implements SendInterface
                 ]);
                 $statusCode = $response->getStatusCode();
                 if ($statusCode === 200) {
-                    $joke->fill(['completed'=>true])->save();
+                    $joke->fill(['completed' => true])->save();
                     return $this->handleSmsResponse(
                         true,
                         ['message' => 'Отправлена SMS по номеру - ' . $user->phone]
