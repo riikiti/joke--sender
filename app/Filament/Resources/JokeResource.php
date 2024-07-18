@@ -7,6 +7,7 @@ use App\Filament\Resources\JokeResource\RelationManagers;
 use App\Models\Joke;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -14,6 +15,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
@@ -34,10 +36,13 @@ class JokeResource extends Resource
             ->schema([
                 Grid::make(1)
                     ->schema([
-                        Textarea::make('body')->label('Шутка')->required()->maxLength(4096),
+                        Textarea::make('body')->label('Шутка')->maxLength(4096),
                         DateTimePicker::make('published_at')->label('Дата публикации'),
                         Toggle::make('sms')->label('SMS'),
-                        Toggle::make('tg')->label('Telegram')
+                        Toggle::make('tg')->label('Telegram'),
+                        FileUpload::make('photo')
+                            ->directory('photos')
+                            ->label('Фото')
                     ])
             ]);
     }
@@ -52,6 +57,7 @@ class JokeResource extends Resource
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
                 ToggleColumn::make('completed')->label('Опубликовано')->searchable(),
+                ImageColumn::make('photo')->label('Фото')
             ])
             ->filters([
                 //
