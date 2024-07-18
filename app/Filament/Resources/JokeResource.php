@@ -18,6 +18,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -56,11 +57,12 @@ class JokeResource extends Resource
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
-                ToggleColumn::make('completed')->label('Опубликовано')->searchable(),
+                ToggleColumn::make('completed')->label('Опубликовано')->sortable(),
                 ImageColumn::make('photo')->label('Фото')
             ])
             ->filters([
-                //
+                Filter::make('completed')->label('Опубликовано')
+                    ->query(fn (Builder $query): Builder => $query->where('completed', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
