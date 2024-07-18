@@ -30,6 +30,7 @@ class SendTelegramCommand extends Command
     public function handle(SendTelegramAction $action)
     {
         $jokes = Joke::where('published_at', '<=', now())->where('completed',false)->where('tg',true)->get();
+        dd($jokes);
         foreach ($jokes as $joke) {
             $action->send($joke);
         }
