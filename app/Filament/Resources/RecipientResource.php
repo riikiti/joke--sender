@@ -25,7 +25,7 @@ class RecipientResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('phone')->label('phone')->required()->maxValue(1024),
+                TextInput::make('phone')->label('Номер')->required()->maxValue(255),
             ]);
     }
 
@@ -34,7 +34,7 @@ class RecipientResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->label('id')->searchable(),
-                TextColumn::make('phone')->label('phone')->searchable(),
+                TextColumn::make('phone')->label('Номер')->searchable(),
             ])
             ->filters([
                 //
