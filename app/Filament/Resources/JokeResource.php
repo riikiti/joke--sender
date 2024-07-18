@@ -45,12 +45,12 @@ class JokeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('id')->searchable()->formatStateUsing(fn ($state) => Str::limit($state, 30)),
                 TextColumn::make('body')->label('Шутка')->searchable(),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
                 ToggleColumn::make('completed')->label('Опубликовано')->searchable(),
+                TextColumn::make('id')->label('id')->searchable(),
             ])
             ->filters([
                 //
