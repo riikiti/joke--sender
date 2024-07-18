@@ -126,5 +126,7 @@ return [
     'mainSmsProject' => env('MAINSMS_PROJECT', 'zems'),
     'mainSmsURL' => env('MAINSMS_URL', 'https://mainsms.ru/api/message/send'),
     'mainSmsTestMode' => env('MAINSMS_TEST_MODE', true),
+    'tgToken' => env('TELEGRAM_TOKEN', ''),
+    'tgChannel' => env('TELEGRAM_CHANNEL', 'zems'),
 
 ];

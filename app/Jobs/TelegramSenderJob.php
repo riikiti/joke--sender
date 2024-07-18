@@ -2,18 +2,20 @@
 
 namespace App\Jobs;
 
-use GuzzleHttp\Exception\GuzzleException;
+use App\Actions\Telegram\SendTelegramAction;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use SendSmsAction;
 
-class SmsJokeSenderJob implements ShouldQueue
+class TelegramSenderJob implements ShouldQueue
 {
     use Queueable;
 
+    /**
+     * Create a new job instance.
+     */
     public string $message;
 
     public function __construct($message)
@@ -23,9 +25,8 @@ class SmsJokeSenderJob implements ShouldQueue
 
     /**
      * Execute the job.
-     * @throws GuzzleException
      */
-    public function handle(SendSmsAction $action): void
+    public function handle(SendTelegramAction $action): void
     {
         $action->send($this->message);
     }

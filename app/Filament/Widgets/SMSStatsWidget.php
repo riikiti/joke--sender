@@ -3,20 +3,19 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Joke;
-use App\Models\User;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class JokeStatsWidget extends BaseWidget
+class SMSStatsWidget extends BaseWidget
 {
     protected function getStats(): array
     {
         return [
-            Stat::make('Всего шуток', Joke::count())
+            Stat::make('Опубликовано шуток SMS', Joke::where('published_at', '<=', now())->where('sms',true)->count())
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
-            Stat::make('Всего пользователей для SMS', User::count())
+            Stat::make('Запланировано шуток SMS', Joke::where('published_at', '>=', now())->where('sms',true)->count())
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
         ];

@@ -7,11 +7,14 @@ use App\Filament\Resources\JokeResource\RelationManagers;
 use App\Models\Joke;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -26,8 +29,13 @@ class JokeResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('body')->label('Шутка')->required()->maxValue(1024),
-                DateTimePicker::make('published_at')->label('Дата публикации')
+                Grid::make(1)
+                    ->schema([
+                        TextInput::make('body')->label('Шутка')->required()->maxValue(1024),
+                        DateTimePicker::make('published_at')->label('Дата публикации'),
+                        Toggle::make('sms')->label('SMS'),
+                        Toggle::make('tg')->label('Telegram')
+                    ])
             ]);
     }
 
@@ -38,6 +46,8 @@ class JokeResource extends Resource
                 TextColumn::make('id')->label('id')->searchable(),
                 TextColumn::make('body')->label('Шутка')->searchable(),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
+                ToggleColumn::make('sms')->label('SMS'),
+                ToggleColumn::make('tg')->label('Telegram')
             ])
             ->filters([
                 //

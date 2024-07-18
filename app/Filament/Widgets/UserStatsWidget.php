@@ -12,9 +12,7 @@ class UserStatsWidget extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Всего пользователей для SMS', User::count())
-                ->color('success')
-                ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
+
         ];
     }
 }

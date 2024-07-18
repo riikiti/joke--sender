@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('body',1024);
             $table->timestamp('published_at')->nullable();
+            $table->boolean('sms')->default(false);
+            $table->boolean('tg')->default(true);
             $table->timestamps();
         });
     }

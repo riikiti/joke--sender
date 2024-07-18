@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\SendInterface;
 use App\Models\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -7,7 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 
-class SendSmsAction
+class SendSmsAction implements SendInterface
 {
     public Client $client;
     public string $key;
@@ -25,7 +26,7 @@ class SendSmsAction
     /**
      * @throws GuzzleException
      */
-    public function send($message)
+    public function send(string $message)
     {
         $users = User::all();
         foreach ($users as $user) {
