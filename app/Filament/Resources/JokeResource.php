@@ -18,6 +18,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class JokeResource extends Resource
@@ -44,7 +45,7 @@ class JokeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('id')->limit(20)->searchable(),
+                TextColumn::make('id')->label('id')->searchable()->formatStateUsing(fn ($state) => Str::limit($state, 30)),
                 TextColumn::make('body')->label('Шутка')->searchable(),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
                 ToggleColumn::make('sms')->label('SMS'),
