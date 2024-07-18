@@ -44,7 +44,7 @@ class JokeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('id')->searchable()->limit(20),
+                TextColumn::make('id')->label('id')->limit(20)->searchable(),
                 TextColumn::make('body')->label('Шутка')->searchable(),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
                 ToggleColumn::make('sms')->label('SMS'),
