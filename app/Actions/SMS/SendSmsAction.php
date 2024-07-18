@@ -4,6 +4,7 @@ namespace App\Actions\SMS;
 
 use App\Actions\SendInterface;
 use App\Models\Joke;
+use App\Models\Recipient;
 use App\Models\User;
 use App\Trait\ClearPhoneTrait;
 use Exception;
@@ -35,7 +36,7 @@ class SendSmsAction implements SendInterface
      */
     public function send(Joke $joke)
     {
-        $users = User::where('phone', '!=', null)->get();
+        $users = Recipient::where('phone', '!=', null)->get();
         foreach ($users as $user) {
             try {
                 $response = $this->client->request('GET', $this->url, [
