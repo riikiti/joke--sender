@@ -30,7 +30,7 @@ class SendTelegramCommand extends Command
     {
         $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->where('tg',true)->get();
         foreach ($jokes as $joke) {
-            TelegramSenderJob::dispatch($joke);
+            TelegramSenderJob::dispatch($joke->body);
         }
         return self::SUCCESS;
     }

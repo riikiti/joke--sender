@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Actions\SMS;
+
 use App\Actions\SendInterface;
 use App\Models\User;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
@@ -28,7 +31,7 @@ class SendSmsAction implements SendInterface
      */
     public function send(string $message)
     {
-        $users = User::where('phone','!=',null)->get();
+        $users = User::where('phone', '!=', null)->get();
         foreach ($users as $user) {
             try {
                 $response = $this->client->request('GET', $this->url, [
