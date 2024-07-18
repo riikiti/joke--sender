@@ -29,7 +29,7 @@ class SendTelegramCommand extends Command
      */
     public function handle(SendTelegramAction $action)
     {
-        $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->where('completed',false)->where('tg',true)->get();
+        $jokes = Joke::where('published_at', '<=', now())->where('completed',false)->where('tg',true)->get();
         foreach ($jokes as $joke) {
             $action->send($joke);
         }
