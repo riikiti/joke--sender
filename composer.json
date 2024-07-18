@@ -13,6 +13,7 @@
         "filament/widgets": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "nutgram/laravel": "^1.4",
         "nutgram/nutgram": "^4.24"
     },
     "require-dev": {
