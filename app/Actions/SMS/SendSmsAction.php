@@ -28,7 +28,7 @@ class SendSmsAction implements SendInterface
      */
     public function send(string $message)
     {
-        $users = User::all();
+        $users = User::where('phone','!=',null)->get();
         foreach ($users as $user) {
             try {
                 $response = $this->client->request('GET', $this->url, [
