@@ -31,7 +31,7 @@ class SendTelegramCommand extends Command
     {
         $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->where('completed',false)->where('tg',true)->get();
         foreach ($jokes as $joke) {
-            $action->send($joke->body);
+            $action->send($joke);
         }
         return self::SUCCESS;
     }

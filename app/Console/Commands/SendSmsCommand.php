@@ -31,7 +31,7 @@ class SendSmsCommand extends Command
     {
         $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->where('sms',true)->where('completed',false)->get();
         foreach ($jokes as $joke) {
-            $action ->send($joke->body);
+            $action ->send($joke);
         }
         return self::SUCCESS;
     }
