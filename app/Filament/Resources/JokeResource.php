@@ -47,7 +47,8 @@ class JokeResource extends Resource
                 TextColumn::make('body')->label('Шутка')->searchable(),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable(),
                 ToggleColumn::make('sms')->label('SMS'),
-                ToggleColumn::make('tg')->label('Telegram')
+                ToggleColumn::make('tg')->label('Telegram'),
+                ToggleColumn::make('completed')->label('Опубликовано')->searchable(),
             ])
             ->filters([
                 //
