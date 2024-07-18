@@ -9,5 +9,5 @@ class Joke extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['body', 'published_at', 'sms', 'tg'];
+    protected $fillable = ['body', 'published_at', 'sms', 'tg','completed'];
 }

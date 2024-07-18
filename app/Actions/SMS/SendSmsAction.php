@@ -3,6 +3,7 @@
 namespace App\Actions\SMS;
 
 use App\Actions\SendInterface;
+use App\Models\Joke;
 use App\Models\User;
 use Exception;
 use GuzzleHttp\Client;
@@ -29,7 +30,7 @@ class SendSmsAction implements SendInterface
     /**
      * @throws GuzzleException
      */
-    public function send(string $message)
+    public function send(Joke $joke)
     {
         $users = User::where('phone', '!=', null)->get();
         foreach ($users as $user) {
@@ -41,13 +42,14 @@ class SendSmsAction implements SendInterface
                     'form_params' => [
                         'project' => $this->project,
                         'recipients' => $user->phone,
-                        'message' => $message,
+                        'message' => $joke->body,
                         'apikey' => $this->key,
                         'test' => config('app.mainSmsTestMode')
                     ],
                 ]);
                 $statusCode = $response->getStatusCode();
                 if ($statusCode === 200) {
+                    $joke->fill(['completed'=>true])->save();
                     return $this->handleSmsResponse(
                         true,
                         ['message' => 'Отправлена SMS по номеру - ' . $user->phone]

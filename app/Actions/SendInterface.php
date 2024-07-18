@@ -2,8 +2,10 @@
 
 namespace App\Actions;
 
+use App\Models\Joke;
+
 interface SendInterface
 {
-    public function send(string $message);
+    public function send(Joke $joke);
 
 }

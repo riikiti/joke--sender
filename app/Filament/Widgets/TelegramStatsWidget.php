@@ -12,10 +12,10 @@ class TelegramStatsWidget extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Опубликовано шуток Telegram', Joke::where('published_at', '<=', now())->where('tg',true)->count())
+            Stat::make('Опубликовано шуток Telegram', Joke::where('published_at', '<=', now())->where('tg',true)->where('completed',true)->count())
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
-            Stat::make('Запланировано шуток Telegram', Joke::where('published_at', '>=', now())->where('tg',true)->count())
+            Stat::make('Запланировано шуток Telegram', Joke::where('published_at', '>=', now())->where('tg',true)->where('completed',false)->count())
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
         ];
