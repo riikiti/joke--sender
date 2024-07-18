@@ -24,7 +24,7 @@ class SendTelegramAction implements SendInterface
         $this->bot->sendMessage(
             text: $joke->body,
             chat_id: intval(env('TELEGRAM_CHANNEL')),
-            parse_mode: ParseMode::MARKDOWN,
+            parse_mode: ParseMode::HTML,
         );
         $this->bot->run();
     }
