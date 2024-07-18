@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\Telegram\SendTelegramAction;
 use App\Jobs\TelegramSenderJob;
 use App\Models\Joke;
 use Carbon\Carbon;
@@ -26,11 +27,11 @@ class SendTelegramCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(SendTelegramAction $action)
     {
         $jokes = Joke::whereDate('published_at', Carbon::today())->where('published_at', '<=', now())->where('tg',true)->get();
         foreach ($jokes as $joke) {
-            TelegramSenderJob::dispatch($joke->body);
+            $action->send($joke->body);
         }
         return self::SUCCESS;
     }
