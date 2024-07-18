@@ -9,4 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateJoke extends CreateRecord
 {
     protected static string $resource = JokeResource::class;
+    protected static ?string $title = 'шутку';
 }
