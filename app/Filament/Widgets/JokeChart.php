@@ -20,7 +20,7 @@ class JokeChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Пользователи',
+                    'label' => 'Шутки',
                     'data' => $amounts['userCountsByDay']
                 ],
             ],
