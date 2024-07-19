@@ -54,7 +54,7 @@ class JokeResource extends Resource
             ->columns([
                 TextColumn::make('id')->label('id')->searchable(),
                 TextColumn::make('body')->label('Шутка')->searchable()->formatStateUsing(fn ($state) => Str::limit($state, 30)),
-                TextColumn::make('published_at')->label('Дата отправки')->searchable(),
+                TextColumn::make('published_at')->label('Дата отправки')->searchable()->sortable(),
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
                 ToggleColumn::make('completed')->label('Опубликовано')->sortable(),

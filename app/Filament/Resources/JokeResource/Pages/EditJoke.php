@@ -9,7 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 class EditJoke extends EditRecord
 {
     protected static string $resource = JokeResource::class;
-    protected static ?string $title = 'шутку';
+    protected static ?string $title = 'Редактирование шутки';
     protected function getHeaderActions(): array
     {
         return [
