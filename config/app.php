@@ -128,5 +128,5 @@ return [
     'mainSmsTestMode' => env('MAINSMS_TEST_MODE', true),
     'tgToken' => env('TELEGRAM_TOKEN', ''),
     'tgChannel' => env('TELEGRAM_CHANNEL', 'zems'),
-
+    'tgApi' => env('TELEGRAM_API', ''),
 ];
