@@ -1,4 +1,4 @@
 ## Service for send sms
 ### Using service
 - mainsms -> https://mainsms.ru
-- tg api  
+- tg api  1
