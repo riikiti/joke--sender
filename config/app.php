@@ -129,4 +129,6 @@ return [
     'tgToken' => env('TELEGRAM_TOKEN', ''),
     'tgChannel' => env('TELEGRAM_CHANNEL', 'zems'),
     'tgApi' => env('TELEGRAM_API', ''),
+    'regRuApiKey' => env('REG_RU_API_TOKEN', ''),
+    'regRuApi' => env('REG_RU_API', ''),
 ];
