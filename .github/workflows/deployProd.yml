@@ -10,8 +10,6 @@ jobs:
       name: PRODUCTION
       url: https://prazdnikitoday.online/
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
       -   name: connect to ssh and deploy
           uses: appleboy/ssh-action@v1.0.3
