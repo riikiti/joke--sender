@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class RegRuInfo extends BaseWidget
 {
+    protected static ?int $sort = 2;
     /**
      * @throws GuzzleException
      */

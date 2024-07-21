@@ -9,6 +9,7 @@ use Filament\Widgets\ChartWidget;
 class JokeChart extends ChartWidget
 {
     protected static ?string $heading = 'Chart';
+    protected static ?int $sort = 3;
     public function getHeading(): string
     {
         return "Новые шутки за " . Carbon::now()->translatedFormat('F');

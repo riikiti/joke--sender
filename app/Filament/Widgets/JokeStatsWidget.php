@@ -11,6 +11,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class JokeStatsWidget extends BaseWidget
 {
+    protected static ?int $sort = 5;
     protected function getStats(): array
     {
         return [

@@ -9,6 +9,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class SMSStatsWidget extends BaseWidget
 {
+    protected static ?int $sort = 6;
     protected function getStats(): array
     {
         return [

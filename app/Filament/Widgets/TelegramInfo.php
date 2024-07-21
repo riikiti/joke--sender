@@ -10,6 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class TelegramInfo extends BaseWidget
 {
+    protected static ?int $sort = 1;
     /**
      * @throws GuzzleException
      */
