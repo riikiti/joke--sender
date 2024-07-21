@@ -2,10 +2,11 @@
 
 namespace App\Actions\RegRu;
 
+use App\Actions\GetInfoInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-abstract class GetRegRu
+abstract class GetRegRu implements GetInfoInterface
 {
     public Client $client;
 
@@ -22,7 +23,7 @@ abstract class GetRegRu
     /**
      * @throws GuzzleException
      */
-    protected function getObject(string $method)
+    public function getObject(string $method)
     {
         $response = $this->client->request(
             'GET', $method,
