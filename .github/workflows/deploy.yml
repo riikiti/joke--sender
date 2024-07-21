@@ -2,7 +2,7 @@ name: deploy.yml
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   backend_deploy:
