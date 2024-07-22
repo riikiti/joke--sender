@@ -22,6 +22,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -67,12 +68,11 @@ class JokeResource extends Resource
                 TextColumn::make('created_at')->label('Дата создания')->sortable()
             ])
             ->filters([
-                Filter::make('completed')->label('Опубликовано')
-                    ->query(fn(Builder $query): Builder => $query->where('completed', true))->toggle(),
-                Filter::make('published_at')->label('Есть дата публикации')
-                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null))->toggle(),
-                Filter::make('photo')->label('Есть фото')
-                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))->toggle()
+                TernaryFilter::make('completed')->label('Опубликовано'),
+                TernaryFilter::make('published_at')->label('Есть дата публикации')
+                    ->nullable(),
+                TernaryFilter::make('photo')->label('Есть фото')
+                    ->nullable()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
