@@ -58,7 +58,8 @@ class JokeResource extends Resource
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
                 ToggleColumn::make('completed')->label('Опубликовано')->sortable(),
-                ImageColumn::make('photo')->label('Фото')->sortable()
+                ImageColumn::make('photo')->label('Фото')->sortable(),
+                TextColumn::make('created_at')->sortable()
             ])
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
