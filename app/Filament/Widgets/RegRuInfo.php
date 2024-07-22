@@ -20,7 +20,7 @@ class RegRuInfo extends BaseWidget
             Stat::make('Баланс на сервере', $action->getBalance() . ' руб')
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
-            Stat::make('Сервер будет работать', round($action->getHoursLeft(),2) . ' дней')
+            Stat::make('Сервер будет работать', round($action->getHoursLeft(),2) . ' дней(ня)')
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
         ];
