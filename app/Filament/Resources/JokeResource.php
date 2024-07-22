@@ -53,7 +53,9 @@ class JokeResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->label('id')->searchable(),
-                TextColumn::make('body')->label('Шутка')->searchable()->formatStateUsing(fn ($state) => Str::limit($state, 30)),
+                TextColumn::make('body')->label('Шутка')->searchable()->formatStateUsing(
+                    fn($state) => Str::limit($state, 30)
+                ),
                 TextColumn::make('published_at')->label('Дата отправки')->searchable()->sortable(),
                 ToggleColumn::make('sms')->label('SMS'),
                 ToggleColumn::make('tg')->label('Telegram'),
@@ -63,7 +65,11 @@ class JokeResource extends Resource
             ])
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
-                    ->query(fn (Builder $query): Builder => $query->where('completed', true))
+                    ->query(fn(Builder $query): Builder => $query->where('completed', true)),
+                Filter::make('completed')->label('Опубликовано')
+                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null)),
+                Filter::make('completed')->label('Опубликовано')
+                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
