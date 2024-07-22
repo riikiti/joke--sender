@@ -21,7 +21,7 @@ class JokeStatsWidget extends BaseWidget
             Stat::make('Всего пользователей для SMS', Recipient::count())
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
-            Stat::make('На скольк дней хватит постов', (Joke::query()->where('completed',false)->count())/3 . ' дней')
+            Stat::make('На скольк дней хватит постов', round((Joke::query()->where('completed',false)->count())/3,2 ) . ' дней')
                 ->color('success')
                 ->chart([7, 3, 4, 5, 6, 3, 5, 3]),
         ];
