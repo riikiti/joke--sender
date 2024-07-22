@@ -68,7 +68,11 @@ class JokeResource extends Resource
             ])
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
-                    ->query(fn(Builder $query): Builder => $query->where('completed', true))
+                    ->query(fn(Builder $query): Builder => $query->where('completed', true)),
+                Filter::make('published_at')->label('Есть дата публикации')
+                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null)),
+                Filter::make('photo')->label('Есть фото')
+                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -76,10 +80,10 @@ class JokeResource extends Resource
                 Action::make('Отправить')
                     ->requiresConfirmation()
                     ->icon('heroicon-o-chat-bubble-bottom-center-text')->action(
-                    function (Action $action, Joke $joke) {
-                        (new SendTelegramAction())->send($joke);
-                    }
-                ),
+                        function (Action $action, Joke $joke) {
+                            (new SendTelegramAction())->send($joke);
+                        }
+                    ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
