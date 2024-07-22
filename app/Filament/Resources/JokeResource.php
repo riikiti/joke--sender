@@ -66,9 +66,9 @@ class JokeResource extends Resource
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
                     ->query(fn(Builder $query): Builder => $query->where('completed', true)),
-                Filter::make('completed')->label('Опубликовано')
+                Filter::make('completed')->label('Есть дата публикации')
                     ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null)),
-                Filter::make('completed')->label('Опубликовано')
+                Filter::make('completed')->label('Есть фото')
                     ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))
             ])
             ->actions([
