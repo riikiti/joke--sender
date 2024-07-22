@@ -68,11 +68,11 @@ class JokeResource extends Resource
             ])
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
-                    ->query(fn(Builder $query): Builder => $query->where('completed', true)),
+                    ->query(fn(Builder $query): Builder => $query->where('completed', true))->toggle(),
                 Filter::make('published_at')->label('Есть дата публикации')
-                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null)),
+                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null))->toggle(),
                 Filter::make('photo')->label('Есть фото')
-                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))
+                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))->toggle()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
