@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\Filament\SendJokeAction;
+use App\Actions\Telegram\SendTelegramAction;
 use App\Filament\Resources\JokeResource\Pages;
 use App\Filament\Resources\JokeResource\RelationManagers;
 use App\Models\Joke;
@@ -15,6 +17,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -65,15 +68,18 @@ class JokeResource extends Resource
             ])
             ->filters([
                 Filter::make('completed')->label('Опубликовано')
-                    ->query(fn(Builder $query): Builder => $query->where('completed', true)),
-                Filter::make('completed')->label('Есть дата публикации')
-                    ->query(fn(Builder $query): Builder => $query->where('published_at', '!=', null)),
-                Filter::make('completed')->label('Есть фото')
-                    ->query(fn(Builder $query): Builder => $query->where('photo', '!=', null))
+                    ->query(fn(Builder $query): Builder => $query->where('completed', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Action::make('Отправить')
+                    ->requiresConfirmation()
+                    ->icon('heroicon-o-chat-bubble-bottom-center-text')->action(
+                    function (Action $action, Joke $joke) {
+                        (new SendTelegramAction())->send($joke);
+                    }
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -6,6 +6,8 @@ use App\Actions\SendInterface;
 use App\Models\Joke;
 use Illuminate\Support\Facades\Storage;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\RunningMode\Polling;
+use SergiX44\Nutgram\RunningMode\Webhook;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 
@@ -17,6 +19,7 @@ class SendTelegramAction implements SendInterface
     public function __construct()
     {
         $this->bot = new Nutgram(config('app.tgToken'));
+        $this->bot->setRunningMode(Webhook::class);
         $this->chat = intval(config('app.tgChannel'));
     }
 
@@ -39,6 +42,5 @@ class SendTelegramAction implements SendInterface
                 parse_mode: ParseMode::HTML,
             );
         }
-        $this->bot->run();
     }
 }
