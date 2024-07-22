@@ -72,7 +72,7 @@ class JokeResource extends Resource
                 TernaryFilter::make('published_at')->label('Есть дата публикации')
                     ->nullable(),
                 TernaryFilter::make('photo')->label('Есть фото')
-                    ->nullable()
+                    ->nullable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
