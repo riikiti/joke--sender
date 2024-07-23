@@ -19,11 +19,10 @@ class SendTelegramAction implements SendInterface
     public function __construct()
     {
         $this->bot = new Nutgram(config('app.tgToken'));
-        $this->bot->setRunningMode(Webhook::class);
         $this->chat = intval(config('app.tgChannel'));
     }
 
-    public function send(Joke $joke)
+    public function send(Joke $joke): void
     {
         $joke->fill(['completed' => true])->save();
         if ($joke->photo) {
