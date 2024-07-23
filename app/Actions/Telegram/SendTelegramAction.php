@@ -42,6 +42,5 @@ class SendTelegramAction implements SendInterface
                 parse_mode: ParseMode::HTML,
             );
         }
-        $this->bot->run();
     }
 }
