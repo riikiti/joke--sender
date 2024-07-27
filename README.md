@@ -1,4 +1,5 @@
-## Service for send sms
+## Telegram channel
 ### Using service
 - mainsms -> https://mainsms.ru
-- tg api  
+- tg api 
+- reg.ru
