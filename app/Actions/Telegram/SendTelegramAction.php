@@ -37,7 +37,7 @@ class SendTelegramAction implements SendInterface
         else{
             $this->bot->sendMessage(
                 text: $joke->body,
-                chat_id: intval(env('TELEGRAM_CHANNEL')),
+                chat_id: $this->chat,
                 parse_mode: ParseMode::HTML,
             );
         }

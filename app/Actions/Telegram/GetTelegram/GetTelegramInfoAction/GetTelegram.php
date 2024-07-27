@@ -3,7 +3,7 @@
 namespace App\Actions\Telegram\GetTelegram\GetTelegramInfoAction;
 
 use App\Actions\GetInfoInterface;
-use App\Enums\TelegramApiMethodsEnum;
+use App\Enums\Methods\TelegramApiMethodsEnum;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -19,7 +19,7 @@ abstract class GetTelegram implements GetInfoInterface
     /**
      * @throws GuzzleException
      */
-    public function getObject(string $method)
+    public function getObject(TelegramApiMethodsEnum|string $method)
     {
         $response = $this->client->request(
             'GET', $method,

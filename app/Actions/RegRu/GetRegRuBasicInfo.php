@@ -2,7 +2,7 @@
 
 namespace App\Actions\RegRu;
 
-use App\Enums\RegRuApiMethodsEnum;
+use App\Enums\Methods\RegRuApiMethodsEnum;
 use GuzzleHttp\Exception\GuzzleException;
 
 class GetRegRuBasicInfo extends GetRegRu
